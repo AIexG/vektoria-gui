@@ -1,0 +1,142 @@
+#include "Game.h"
+
+CGame::CGame(void)
+{
+}
+
+CGame::~CGame(void)
+{
+}
+
+void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CSplash * psplash)
+{
+	// Hier die Initialisierung Deiner Vektoria-Objekte einfügen:
+	m_zr.Init(psplash);
+
+	m_zf.Init(hwnd, procOS);
+	m_zf.SetColorBackground(CColor(0.0f, 0.0f, 0.0f));
+	m_zr.AddFrame(&m_zf);
+
+	m_zv.InitFull(&m_zc);
+	m_zf.AddViewport(&m_zv);
+
+	m_zr.AddScene(&m_zs);
+
+	m_zpCamera.AddCamera(&m_zc);
+	m_zc.Init(QUARTERPI);
+	m_zs.AddPlacement(&m_zpCamera);
+
+	m_zs.AddLightParallel(&m_zlp);
+	m_zlp.Init(CHVector(1.0f, 1.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f));
+
+	m_zf.AddDeviceCursor(&m_zdc);
+
+	m_zwfFont.LoadPreset("LucidaConsoleBlack");
+	m_zwfFont.SetChromaKeyingOn();
+
+	/*
+	 * ##### BUTTON #####
+	 */
+	m_gbButton.Init(&m_zdc, &m_zwfFont);
+	m_gbButton.SetLabel("Button");
+	m_gbButton.SetSize(180, 40);
+	m_gbButton.SetPositionTopLeft(20, 20);
+	m_zv.AddOverlay(&m_gbButton);
+
+	/*
+	* ##### SLIDER #####
+	*/
+	m_gsSlider.Init(&m_zdc, &m_zwfFont, 0.0f, 100.0f, 10.0f, 1.0f);
+	m_gsSlider.SetLabel("Slider");
+	m_gsSlider.SetSize(180, 60);
+	m_gsSlider.SetPositionTopLeft(80, 20);
+	m_zv.AddOverlay(&m_gsSlider);
+
+	/*
+	* ##### SELECT #####
+	*/
+	m_gsSelect.Init(&m_zdc, &m_zwfFont);
+	m_gsSelect.SetLabel("Select");
+	m_gsSelect.SetSize(180);
+	m_gsSelect.SetPositionTopLeft(160, 20);
+	m_gsSelect.AddOption("Option One");
+	m_gsSelect.AddOption("Option Two");
+	m_gsSelect.AddOption("Option Three");
+	m_gsSelect.AddOption("Option Four");
+	m_gsSelect.AddOption("Option Five");
+	m_gsSelect.AddOption("Option Six");
+	m_zv.AddOverlay(&m_gsSelect);
+
+	/*
+	* ##### IMAGE COLOR PICKER #####
+	*/
+	m_gicpPicker.Init(&m_zdc, &m_zwfFont);
+	m_gicpPicker.SetLabel("ColorPicker");
+	m_gicpPicker.SetSize(180);
+	m_gicpPicker.SetPositionTopLeft(360, 20);
+	m_zv.AddOverlay(&m_gicpPicker);
+}
+
+void CGame::Tick(float fTime, float fTimeDelta)
+{
+	// Hier die Echtzeit-Veränderungen einfügen:
+	m_zr.Tick(fTimeDelta);
+
+	/*
+	* ##### BUTTON #####
+	*/
+	if (m_gbButton.IsHovered()) {
+		// do something
+	}
+
+	if (m_gbButton.IsGrabbed()) {
+		// do something
+	}
+
+	if (m_gbButton.IsClicked()) {
+		// do something
+	}
+
+	/*
+	* ##### SLIDER #####
+	*/
+	if (m_gsSlider.HasUpdated()) {
+		// do something
+		m_gsSlider.GetValue();
+	}
+
+	/*
+	* ##### SELECT #####
+	*/
+	if (m_gsSelect.HasUpdated()) {
+		// do something
+		m_gsSelect.GetActiveName();
+		m_gsSelect.GetActivePosition();
+	}
+
+	/*
+	* ##### IMAGE COLOR PICKER #####
+	*/
+	if (m_gicpPicker.HasUpdated()) {
+		// do something
+		m_gicpPicker.GetColor();
+	}
+}
+
+void CGame::Fini()
+{
+	// Hier die Finalisierung Deiner Vektoria-Objekte einfügen:
+}
+
+void CGame::WindowReSize(int iNewWidth, int iNewHeight)
+{
+	// Windows ReSize wird immer automatisch aufgerufen, wenn die Fenstergröße verändert wurde.
+	// Hier kannst Du dann die Auflösung des Viewports neu einstellen:
+	m_zf.ReSize(iNewWidth, iNewHeight);
+
+	m_gbButton.ReSize();
+	m_gsSlider.ReSize();
+	m_gsSelect.ReSize();
+	m_gicpPicker.ReSize();
+}
+
