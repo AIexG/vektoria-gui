@@ -76,17 +76,14 @@ When resizing the window, the elements do not recalculate their pixel values aut
 ```	C++
 void CGame::WindowReSize(int iNewWidth, int iNewHeight)
 {
-	m_zf.ReSize(iNewWidth, iNewHeight);
+    m_zf.ReSize(iNewWidth, iNewHeight);
 
-	m_gbButton.ReSize();
-	m_gsSlider.ReSize();
-	m_gsSelect.ReSize();
-	m_gicpPicker.ReSize();
+    m_gbButton.ReSize();
+    m_gsSlider.ReSize();
+    m_gsSelect.ReSize();
+    m_gicpPicker.ReSize();
 }
 ```
-
-
-
 
 ## 2.1 - CGuiButton
 Merely a simple button, which features visuals to show the current states.
@@ -96,7 +93,6 @@ Merely a simple button, which features visuals to show the current states.
 ![GuiButton Demo](images/Demo_GuiButton.gif)
 
 </div>
-
 
 Just call like the base CGuiElement:
 
