@@ -2,7 +2,7 @@ This repository was part of a student project in the course of study Game-Engine
 
 # 1 - Getting Started
 
-First of all you should download and set up a project with the [Vektoria Engine](http://games.hs-kempten.de/vektoria-download/). 
+First of all you should download and set up a project with the [Vektoria Engine](http://games.hs-kempten.de/vektoria-download/), if you haven't already. 
 
 After Vektoria is set up and running navigate to your project with a command line promt of your choosing and clone the repository:
 
