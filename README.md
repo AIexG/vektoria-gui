@@ -91,11 +91,11 @@ void CGame::WindowReSize(int iNewWidth, int iNewHeight)
 ## 2.1 - CGuiButton
 Merely a simple button, which features visuals to show the current states.
 
-<center>
+<div align="center">
 
 ![GuiButton Demo](images/Demo_GuiButton.gif)
 
-</center>
+</div>
 
 
 Just call like the base CGuiElement:
@@ -130,11 +130,11 @@ if (m_gbButton.IsClicked()) {
 
 A slider that allows you to smoothly select a certain number.
 
-<center>
+<div align="center">
 
 ![GuiSlider Demo](images/Demo_GuiSlider.gif)
 
-</center>
+</div>
 
 `Init()` allows you to set a min-, max-, default- ans step-value to precisely configure the slider to your requirements. Can also be adjusted or called with `CGuiSlider::InitParameters(fMin, fMax, fDefault, fStep)` if needed.
 
@@ -163,11 +163,11 @@ if (m_gsSlider.HasUpdated()) {
 
 A select with scrolling capabilities.
 
-<center>
+<div align="center">
 
 ![GuiSelect Demo](images/Demo_GuiSelect.gif)
 
-</center>
+</div>
 
 An *indefinitely* amount of options can be added with the method `CGuiSelect::AddOption(string)`.
 
@@ -198,11 +198,11 @@ if (m_gsSelect.HasUpdated()) {
 
 A simple color picker to grab a color value when clicking inside the image area.
 
-<center>
+<div align="center">
 
 ![GuiImageColorPicker Demo](images/Demo_GuiImageColorPicker.gif)
 
-</center>
+</div>
 
 On default the color picker will show a wide color spectrum, but custom images can be set with an image path `CGuiImageColorPicker::SetImage(char*)` or with an already existing image `CGuiImageColorPicker::SetImage(CImage&)`, alternatively can also be set in the constructor.
 
