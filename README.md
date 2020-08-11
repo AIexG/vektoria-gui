@@ -157,7 +157,7 @@ m_gsSlider.Init(&m_zdc, &m_zwfFont, 0.0f, 100.0f, 10.0f, 1.0f, CFloatRect(0.1f, 
 m_zv.AddOverlay(&m_gsSlider);
 ```
 
-If changed by the user the method `CGuiSlider::HasUpdated()` will return true. The methods `CGuiSlider::GetValue()` will return the currently selected value.
+If changed by the user, the method `CGuiSlider::HasUpdated()` will return true. The methods `CGuiSlider::GetValue()` will return the currently selected value.
 
 **Source Tick():**
 ```	C++
@@ -191,7 +191,7 @@ m_gsSelect.AddOption("foo");
 m_zv.AddOverlay(&m_gsSelect);
 ```
 
-If an option has been selected or deselected by the user the method `CGuiSelect::HasUpdated()` will return true. The methods `CGuiSelect::GetActiveName()` and `CGuiSelect::GetActivePosition()` will return the currently selected name and position respectively and an empty string or `-1` if none is selected.
+If an option has been selected or deselected by the user, the method `CGuiSelect::HasUpdated()` will return true. The methods `CGuiSelect::GetActiveName()` and `CGuiSelect::GetActivePosition()` will return the currently selected name and position respectively and an empty string or `-1` if none is selected.
 
 **Source Tick():**
 ```	C++
@@ -225,7 +225,7 @@ m_gicpPicker.Init(&m_zdc, &m_zwfFont);
 m_zv.AddOverlay(&m_gicpPicker);
 ```
 
-If a new color has been picked by the user the method `CGuiImageColorPicker::HasUpdated()` will return true. The method `CGuiImageColorPicker::GetColor()` allows you to read the last saved color value from the picker.
+If a new color has been picked by the user, the method `CGuiImageColorPicker::HasUpdated()` will return true. The method `CGuiImageColorPicker::GetColor()` allows you to read the last saved color value from the picker.
 
 **Source Tick():**
 ```	C++
