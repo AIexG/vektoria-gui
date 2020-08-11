@@ -1,5 +1,17 @@
 This repository was part of a student project in the course of study Game-Engineering at the [Kempten University of Applied Sciences](https://www.hs-kempten.de/).
 
+# Table of Contents <!-- omit in toc -->
+
+- [1 - Getting Started](#1---getting-started)
+- [2 - Usage](#2---usage)
+  - [2.1 - CGuiButton](#21---cguibutton)
+  - [2.2 - CGuiSlider](#22---cguislider)
+  - [2.3 - CGuiSelect](#23---cguiselect)
+  - [2.4 - CGuiImageColorPicker](#24---cguiimagecolorpicker)
+- [3 - Examples](#3---examples)
+- [4 - Tips and Tricks](#4---tips-and-tricks)
+- [5 - Known issues](#5---known-issues)
+
 # 1 - Getting Started
 
 First of all you should download and set up a project with the [Vektoria Engine](http://games.hs-kempten.de/vektoria-download/), if you haven't already. 
@@ -122,7 +134,7 @@ if (m_gbButton.IsClicked()) {
 }
 ```
 
-## 2.3 - CGuiSlider
+## 2.2 - CGuiSlider
 
 A slider that allows you to smoothly select a certain number.
 
@@ -155,7 +167,7 @@ if (m_gsSlider.HasUpdated()) {
 }
 ```
 
-## 2.4 - CGuiSelect
+## 2.3 - CGuiSelect
 
 A select with scrolling capabilities.
 
@@ -190,7 +202,7 @@ if (m_gsSelect.HasUpdated()) {
 }
 ```
 
-## 2.5 - CGuiImageColorPicker
+## 2.4 - CGuiImageColorPicker
 
 A simple color picker to grab a color value when clicking inside the image area.
 
