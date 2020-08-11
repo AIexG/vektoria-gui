@@ -6,7 +6,7 @@
 //
 // Description: Button overlay element for Vektoria, registers clicking, grabbing and
 //              hovering the element with the cursor adds nicer visuals.
-// Autor      : Alex Grüßhaber
+// Autor      : Alex GrÃ¼ÃŸhaber
 // Copyright  : GNU GPL
 //--------------------------------------------------------------------------------------------
 

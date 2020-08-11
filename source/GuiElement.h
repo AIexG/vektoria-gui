@@ -7,7 +7,7 @@
 //
 // Description: Base overlay element class for Vektoria, registers clicking,
 //              grabbing and hovering the element with the cursor, no visuals.
-// Autor      : Alex Grüßhaber
+// Autor      : Alex GrÃ¼ÃŸhaber
 // Copyright  : GNU GPL
 //--------------------------------------------------------------------------------------------
 

@@ -7,6 +7,16 @@ namespace Vektoria
 		this->Init(deviceCursor, font, m_zfrBase);
 	}
 
+	void CGuiImageColorPicker::Init(CDeviceCursor* deviceCursor, CWritingFont* font, CImage& image)
+	{
+		this->Init(deviceCursor, font, m_zfrBase, image);
+	}
+
+	void CGuiImageColorPicker::Init(CDeviceCursor* deviceCursor, CWritingFont* font, char* path)
+	{
+		this->Init(deviceCursor, font, m_zfrBase, "gui\\resources\\GuiImageColorPicker_Full.jpg");
+	}
+
 	void CGuiImageColorPicker::Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect)
 	{
 		CImage image;
@@ -16,28 +26,14 @@ namespace Vektoria
 
 	void CGuiImageColorPicker::Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect, CImage& image)
 	{
-		CGuiElement::Init(deviceCursor, font, floatRect);
-		m_acName = "CGuiImageColorPicker";
-
+		Initialisation(deviceCursor, font, floatRect);
 		SetImage(image);
+	}
 
-		// Styling base overlay
-		m_zmBase.MakeTextureSprite("gui\\resources\\GuiElement_Background.jpg");
-
-		// Styling Interactable
-		m_zoInteractable.SetRect(CFloatRect(0.05f, 0.25f, 0.9f, 0.7f));
-		m_zoInteractable.SetTransparency(0.0f);
-
-		// Label
-		m_zwLabel.SetRect(CFloatRect(0.05f, 0.1f, 0.9f, 0.1f));
-
-		// Preview Overlay
-		m_zmPreview.MakeTextureSprite("gui\\resources\\GuiImageColorPicker_Preview.png");
-		m_zmPreview.SetTransparencyOn();
-		m_frPreview = CFloatRect(0.0f, 0.0f, 0.02f, 0.02f);
-		m_zoPreview.Init(&m_zmPreview, m_frPreview);
-		m_zoInteractable.AddOverlay(&m_zoPreview);
-		m_zoPreview.SwitchOff();
+	void CGuiImageColorPicker::Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect, char* path)
+	{
+		Initialisation(deviceCursor, font, floatRect);
+		SetImage(path);
 	}
 
 	void CGuiImageColorPicker::SetImage(char* path)
@@ -94,6 +90,31 @@ namespace Vektoria
 		}
 	}
 	
+	void CGuiImageColorPicker::Initialisation(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect)
+	{
+		CGuiElement::Init(deviceCursor, font, floatRect);
+
+		m_acName = "CGuiImageColorPicker";
+
+		// Styling base overlay
+		m_zmBase.MakeTextureSprite("gui\\resources\\GuiElement_Background.jpg");
+
+		// Styling Interactable
+		m_zoInteractable.SetRect(CFloatRect(0.05f, 0.25f, 0.9f, 0.7f));
+		m_zoInteractable.SetTransparency(0.0f);
+
+		// Label
+		m_zwLabel.SetRect(CFloatRect(0.05f, 0.1f, 0.9f, 0.1f));
+
+		// Preview Overlay
+		m_zmPreview.MakeTextureSprite("gui\\resources\\GuiImageColorPicker_Preview.png");
+		m_zmPreview.SetTransparencyOn();
+		m_frPreview = CFloatRect(0.0f, 0.0f, 0.02f, 0.02f);
+		m_zoPreview.Init(&m_zmPreview, m_frPreview);
+		m_zoInteractable.AddOverlay(&m_zoPreview);
+		m_zoPreview.SwitchOff();
+	}
+
 	void CGuiImageColorPicker::Tick(float& fTimeDelta, CFloatRect& floatrectFather)
 	{
 		CGuiElement::Tick(fTimeDelta, floatrectFather);

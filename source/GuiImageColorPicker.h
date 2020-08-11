@@ -7,7 +7,7 @@
 //
 // Description: Color picker overlay element for Vektoria, allows retrieval
 //              of a color value from an image with the cursor.
-// Autor      : Alex Grüßhaber
+// Autor      : Alex GrÃ¼ÃŸhaber
 // Copyright  : GNU GPL
 //--------------------------------------------------------------------------------------------
 
@@ -27,6 +27,18 @@ namespace Vektoria
 		///<summary>Initialisation method for a slider element.</summary>
 		///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
 		///<param name="font">Font to be used for labels and values</param>
+		///<param name="image">Image to pick a color from</param>
+		void Init(CDeviceCursor* deviceCursor, CWritingFont* font, CImage& image);
+
+		///<summary>Initialisation method for a slider element.</summary>
+		///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
+		///<param name="font">Font to be used for labels and values</param>
+		///<param name="path">Image path to pick a color from</param>
+		void Init(CDeviceCursor* deviceCursor, CWritingFont* font, char* path);
+
+		///<summary>Initialisation method for a slider element.</summary>
+		///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
+		///<param name="font">Font to be used for labels and values</param>
 		///<param name="floatRect">Size and position for the GuiElement</param>
 		void Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect);
 
@@ -37,9 +49,19 @@ namespace Vektoria
 		///<param name="image">Image to pick a color from</param>
 		void Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect, CImage& image);
 
+		///<summary>Initialisation method for a slider element.</summary>
+		///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
+		///<param name="font">Font to be used for labels and values</param>
+		///<param name="floatRect">Size and position for the GuiElement</param>
+		///<param name="path">Image path to pick a color from</param>
+		void Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect, char* path);
+
+		///<summary>Set a new image for the picker by path.</summary>
+		///<param name="path">Path to the image.</param>
 		void SetImage(char* path);
+
 		///<summary>Set a new image for the picker.</summary>
-		///<param name="image">Image to be set</param>
+		///<param name="image">Image to be set.</param>
 		void SetImage(CImage& image);
 
 		///<summary>Returns last picked color.</summary>
@@ -74,6 +96,12 @@ namespace Vektoria
 		float m_fInverseSizeAbsX, m_fInverseSizeAbsY;
 
 		float m_fPreviewPosX, m_fPreviewPosY;
+
+		///<summary>Method to be called in Init().</summary>
+		///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
+		///<param name="font">Font to be used for labels and values</param>
+		///<param name="floatRect">Size and position for the GuiElement</param>
+		void Initialisation(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect);
 
 		///<summary>Method to be called every tick in the application.</summary>
 		///<param name="fTimeDelta">Time since last tick</param>

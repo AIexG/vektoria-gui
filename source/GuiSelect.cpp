@@ -92,7 +92,7 @@ namespace Vektoria
 		m_vOptions.back()->SetLabel(name);
 		m_vOptions.back()->SetInnerOn();
 		m_vOptions.back()->SetMaterial(&m_zmOptionInactive);
-		m_vOptions.back()->SetLabelRect(CFloatRect(0.05f, 0.15f, 0.9f, 0.7f));
+		m_vOptions.back()->SetLabelRect(CFloatRect(0.05f, 0.25f, 0.9f, 0.5f));
 		m_zoInteractable.AddOverlay(m_vOptions.back());
 
 		if (!IsFirstTick()) {
@@ -138,17 +138,17 @@ namespace Vektoria
 
 	bool CGuiSelect::SetActivePosition(int pos)
 	{
-		if (pos == -1 || pos == m_iActive) {
-			if (m_iActive != -1) {
+		if (pos == GUI_SELECT_POSITION_NONE || pos == m_iActive) {
+			if (m_iActive != GUI_SELECT_POSITION_NONE) {
 				m_vOptions[m_iActive]->SetMaterial(&m_zmOptionInactive);
 			}
-			m_iActive = -1;
+			m_iActive = GUI_SELECT_POSITION_NONE;
 			m_bHasUpdated = true;
 			return true;
 		}
 
 		if (pos != m_iActive && pos >= 0 && pos < m_vOptions.size()) {
-			if (m_iActive != -1) {
+			if (m_iActive != GUI_SELECT_POSITION_NONE) {
 				m_vOptions[m_iActive]->SetMaterial(&m_zmOptionInactive);
 			}
 			m_vOptions[pos]->SetMaterial(&m_zmOptionActive);
@@ -163,7 +163,7 @@ namespace Vektoria
 
 	std::string CGuiSelect::GetActiveName()
 	{
-		if (m_iActive != -1) {
+		if (m_iActive != GUI_SELECT_POSITION_NONE) {
 			return m_vOptions[m_iActive]->GetLabel();
 		}
 		return std::string();

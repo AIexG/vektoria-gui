@@ -9,9 +9,11 @@
 //
 // Description: Select overlay element for Vektoria, allows selecting an item
 //				from a list.
-// Autor      : Alex Grüßhaber
+// Autor      : Alex GrÃ¼ÃŸhaber
 // Copyright  : GNU GPL
 //--------------------------------------------------------------------------------------------
+
+#define GUI_SELECT_POSITION_NONE	-1
 
 namespace Vektoria
 {
