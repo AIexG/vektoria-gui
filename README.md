@@ -47,7 +47,7 @@ GuiElement m_geElement;
 **Source Init():**
 ```	C++
 m_geElement.Init(&m_zdc, &m_zwfFont, CFloatRect(0.1f, 0.1f, 0.1f, 0.1f));
-m_zv.AddOverlay(&m_gbButton);
+m_zv.AddOverlay(&m_geElement);
 ```
 
 In the `CGame::Tick()` of your program you're able to check if the user is hovering, grabbing or clicking an element, those states are available for every GUI element and can be called as follows:
