@@ -12,7 +12,7 @@
 // Copyright  : GNU GPL
 //--------------------------------------------------------------------------------------------
 
-namespace Vektoria
+namespace VektoriaGui
 {
     class CGuiSlider : public CGuiElement
     {
@@ -23,13 +23,13 @@ namespace Vektoria
         ///<summary>Initialisation method for a slider element.</summary>
         ///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
         ///<param name="font">Font to be used for labels and values</param>
-        void Init(CDeviceCursor* deviceCursor, CWritingFont* font);
+        void Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font);
 
         ///<summary>Initialisation method for a slider element.</summary>
         ///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
         ///<param name="font">Font to be used for labels and values</param>
         ///<param name="floatRect">Size and position for the GuiElement</param>
-        void Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect);
+        void Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, V::CFloatRect& floatRect);
 
         ///<summary>Initialisation method for a slider element.</summary>
         ///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
@@ -39,7 +39,7 @@ namespace Vektoria
         ///<param name="fDefault">Value to display slider on first load (Default: 50.0)</param>
         ///<param name="fStep">Steps the slider can take by moving (Default: 1.0)</param>
         ///<param name="floatRect">Size and position for the GuiElement</param>
-        void Init(CDeviceCursor* deviceCursor, CWritingFont* font, float fMin, float fMax, float fDefault, float fStep);
+        void Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, float fMin, float fMax, float fDefault, float fStep);
 
         ///<summary>Initialisation method for a slider element.</summary>
         ///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
@@ -48,7 +48,7 @@ namespace Vektoria
         ///<param name="fMax">Maximal value the slider displays (Default: 100.0)</param>
         ///<param name="fDefault">Value to display slider on first load (Default: 50.0)</param>
         ///<param name="fStep">Steps the slider can take by moving (Default: 1.0)</param>
-        void Init(CDeviceCursor* deviceCursor, CWritingFont* font, float fMin, float fMax, float fDefault, float fStep, CFloatRect& floatRect);
+        void Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, float fMin, float fMax, float fDefault, float fStep, V::CFloatRect& floatRect);
 
         ///<summary>Returns the value of the current slider position.</summary>
         float GetValue();
@@ -109,21 +109,20 @@ namespace Vektoria
 
         // Handle
         float m_fHandleWidth = 0.1f;
-        CFloatRect m_zfrHandle;
+        V::CFloatRect m_zfrHandle;
         COverlay m_zoHandle;
-        CMaterial m_zmHandleBackground;
+        V::CMaterial m_zmHandleBackground;
 
         // Handle Track (only visual)
         COverlay m_zoTrackVisual;
-        CMaterial m_zmTrackVisual;
+        V::CMaterial m_zmTrackVisual;
 
         // Value Display
-        CWriting m_zwValue;
+        V::CWriting m_zwValue;
 
         ///<summary>Method to be called every tick in the application.</summary>
         ///<param name="fTimeDelta">Time since last tick</param>
-        //void Tick(float& fTimeDelta);
-        void Tick(float& fTimeDelta, CFloatRect& floatrectFather) override;
+        virtual void Tick(float& fTimeDelta, V::CFloatRect& floatrectFather);
     };
 }
 

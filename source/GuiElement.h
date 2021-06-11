@@ -23,9 +23,13 @@
  * - Fix grabbing nothing, dragging onto element and releasing triggers click
  */
 
-namespace Vektoria
+namespace V = Vektoria;
+
+namespace VektoriaGui
 {
-	class CGuiElement : public COverlay
+	static std::string vektoria_gui_path = "vektoria-gui";
+
+	class CGuiElement : public V::COverlay
 	{
 	public:
 		CGuiElement() = default;
@@ -34,14 +38,14 @@ namespace Vektoria
 		///<summary>Initialisation method for a basic gui element.</summary>
 		///<param name="deviceCursor"> Cursor that interacts with the GuiElement </param>
 		///<param name="font"> Font to be used for labels and values </param>
-		void Init(CDeviceCursor* deviceCursor, CWritingFont* font);
+		void Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font);
 
 		///<summary>Initialisation method for a basic gui element.</summary>
 		///<param name="deviceCursor"> Cursor that interacts with the GuiElement </param>
 		///<param name="font"> Font to be used for labels and values </param>
 		///<param name="floatRect"> Size and position for the GuiElement </param>
-		void Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect);
-
+		void Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, V::CFloatRect& floatRect);
+		
 		///<summary>Returns true if cursor is above the element.</summary>
 		bool IsHovered();
 
@@ -89,7 +93,7 @@ namespace Vektoria
 
 		///<summary>Sets the Labels dimension and position.</summary>
 		///<param name="floatrect"> Dimension and position. </param>
-		void SetLabelRect(CFloatRect& floatrect);
+		void SetLabelRect(V::CFloatRect& floatrect);
 
 		///<summary>Sets the distance from viewport.</summary>
 		///<param name="layer"> Distance from viewport, less means closer, range: ]0;1[. </param>
@@ -109,30 +113,30 @@ namespace Vektoria
 		int m_iWidth = 0, m_iHeight = 0, m_iTopBottom = 0, m_iLeftRight = 0;
 
 		// Cursor
-		CDeviceCursor* m_pdc;
+		V::CDeviceCursor* m_pdc;
 
 		// Base Rect
-		CFloatRect m_zfrBase;
+		V::CFloatRect m_zfrBase;
 
 		// Label
-		CWriting m_zwLabel;
-		CWritingFont* m_pwfFont;
+		V::CWriting m_zwLabel;
+		V::CWritingFont* m_pwfFont;
 		std::string m_sLabel;
 		int m_iLabelLength = 16;
 
 		// Styling
-		CMaterial m_zmBase;
-		CMaterial m_zmInteractable;
+		V::CMaterial m_zmBase;
+		V::CMaterial m_zmInteractable;
 
 		// Interactable area
-		COverlay m_zoInteractable;
+		V::COverlay m_zoInteractable;
 
 		///<summary>Returns true if it is the first tick, call before CGuiElement::Tick() in derived classes.</summary>
 		bool IsFirstTick();
 
 		///<summary>Method to be called every tick in the application.</summary>
 		///<param name="fTimeDelta"> Time since last tick </param>
-		void Tick(float& fTimeDelta, CFloatRect& floatrectFather) override;
+		virtual void Tick(float& fTimeDelta, V::CFloatRect& floatrectFather);
 
 	private:
 		bool m_bFirstTick = true;

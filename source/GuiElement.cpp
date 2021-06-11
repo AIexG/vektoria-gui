@@ -1,13 +1,13 @@
 #include "GuiElement.h"
 
-namespace Vektoria
+namespace VektoriaGui
 {
-	void CGuiElement::Init(CDeviceCursor* deviceCursor, CWritingFont* font)
+	void CGuiElement::Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font)
 	{
-		this->Init(deviceCursor, font, CFloatRect(0.0f, 0.0f, 0.0f, 0.0f));
+		this->Init(deviceCursor, font, V::CFloatRect(0.0f, 0.0f, 0.0f, 0.0f));
 	}
 
-	void CGuiElement::Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect)
+	void CGuiElement::Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, V::CFloatRect& floatRect)
 	{
 		m_acName = "CGuiElement";
 
@@ -26,7 +26,7 @@ namespace Vektoria
 		AddOverlay(&m_zoInteractable);
 
 		// Creating the label
-		m_zwLabel.Init(CFloatRect(), m_iLabelLength, m_pwfFont);
+		m_zwLabel.Init(V::CFloatRect(), m_iLabelLength, m_pwfFont);
 		m_zwLabel.SetInnerOn();
 		AddWriting(&m_zwLabel);
 
@@ -147,7 +147,7 @@ namespace Vektoria
 		this->SetRect(m_zfrBase);
 	}
 
-	void CGuiElement::SetLabelRect(CFloatRect& floatrect)
+	void CGuiElement::SetLabelRect(V::CFloatRect& floatrect)
 	{
 		m_zwLabel.SetRect(floatrect);
 	}
@@ -182,7 +182,7 @@ namespace Vektoria
 		return m_bFirstTick;
 	}
 
-	void CGuiElement::Tick(float& fTimeDelta, CFloatRect& floatrectFather)
+	void CGuiElement::Tick(float& fTimeDelta, V::CFloatRect& floatrectFather)
 	{
 		COverlay::Tick(fTimeDelta, floatrectFather);
 

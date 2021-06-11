@@ -1,47 +1,47 @@
 #include "GuiSlider.h"
 
-namespace Vektoria
+namespace VektoriaGui
 {
-	void CGuiSlider::Init(CDeviceCursor* deviceCursor, CWritingFont* font)
+	void CGuiSlider::Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font)
 	{
 		this->Init(deviceCursor, font, m_zfrBase);
 	}
 
-	void CGuiSlider::Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect)
+	void CGuiSlider::Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, V::CFloatRect& floatRect)
 	{
 		this->Init(deviceCursor, font, m_fMin, m_fMax, m_fDefault, m_fStep, m_zfrBase);
 	}
 
-	void CGuiSlider::Init(CDeviceCursor* deviceCursor, CWritingFont* font, float fMin, float fMax, float fDefault, float fStep)
+	void CGuiSlider::Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, float fMin, float fMax, float fDefault, float fStep)
 	{
 		this->Init(deviceCursor, font, fMin, fMax, fDefault, fStep, m_zfrBase);
 	}
 
-	void CGuiSlider::Init(CDeviceCursor* deviceCursor, CWritingFont* font, float fMin, float fMax, float fDefault, float fStep, CFloatRect& floatRect)
+	void CGuiSlider::Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, float fMin, float fMax, float fDefault, float fStep, V::CFloatRect& floatRect)
 	{
 		CGuiElement::Init(deviceCursor, font, floatRect);
 		m_acName = "CGuiSlider";
 
 		// Styling base overlay
-		m_zmBase.MakeTextureSprite("gui\\resources\\GuiElement_Background.jpg");
+		m_zmBase.MakeTextureSprite(&(vektoria_gui_path + "\\resources\\GuiElement_Background.jpg")[0]);
 		m_zmBase.SetTransparency(0.0f);
 
 		// Styling Interactable
 		m_zoInteractable.SetTransparency(1.0f);
-		m_zoInteractable.SetRect(CFloatRect(0.05f, 0.4f, 0.9f, 0.5f));
+		m_zoInteractable.SetRect(V::CFloatRect(0.05f, 0.4f, 0.9f, 0.5f));
 
 		// Label writing
 		m_zwLabel.m_ixChars = 12;
-		m_zwLabel.SetRect(CFloatRect(0.05f, 0.15f, 0.6f, 0.2f));
+		m_zwLabel.SetRect(V::CFloatRect(0.05f, 0.15f, 0.6f, 0.2f));
 
 		// Value writing
-		m_zwValue.Init(CFloatRect(0.65f, 0.15f, 0.3f, 0.2f), 4, m_pwfFont);
+		m_zwValue.Init(V::CFloatRect(0.65f, 0.15f, 0.3f, 0.2f), 4, m_pwfFont);
 		m_zwValue.SetInnerOn();
 		m_zwValue.SetLayer(m_zwLabel.GetLayer());
 		AddWriting(&m_zwValue);
 
 		// Styling Handle
-		m_zmHandleBackground.MakeTextureSprite("gui\\resources\\GuiSlider_Handle.png");
+		m_zmHandleBackground.MakeTextureSprite(&(vektoria_gui_path + "\\resources\\GuiSlider_Handle.png")[0]);
 		m_zmHandleBackground.SetTransparencyOn();
 
 		// Initialize Handle
@@ -51,9 +51,9 @@ namespace Vektoria
 		m_zoInteractable.AddOverlay(&m_zoHandle);
 
 		// Init & Styling Track
-		m_zmTrackVisual.MakeTextureSprite("gui\\resources\\GuiSlider_Track.png");
+		m_zmTrackVisual.MakeTextureSprite(&(vektoria_gui_path + "\\resources\\GuiSlider_Track.png")[0]);
 		m_zmTrackVisual.SetTransparencyOn();
-		m_zoTrackVisual.Init(&m_zmTrackVisual, CFloatRect(0.0f, 0.45f, 1.0f, 0.1f));
+		m_zoTrackVisual.Init(&m_zmTrackVisual, V::CFloatRect(0.0f, 0.45f, 1.0f, 0.1f));
 		m_zoTrackVisual.SetInnerOn();
 		m_zoInteractable.AddOverlay(&m_zoTrackVisual);
 
@@ -173,7 +173,7 @@ namespace Vektoria
 	{
 		CGuiElement::ReSize();
 
-		CFloatRect frAbsoluteInteractable = GetRectAbsolute(&m_zoInteractable);
+		V::CFloatRect frAbsoluteInteractable = fetchRectAbsolutePosition(&m_zoInteractable);
 
 		float fHandleHeight = m_fHandleWidth * frAbsoluteInteractable.GetXSize() / frAbsoluteInteractable.GetYSize();
 		if (m_pviewport != nullptr) {
@@ -190,7 +190,7 @@ namespace Vektoria
 		m_zoHandle.SetRect(m_zfrHandle);
 	}
 
-	void CGuiSlider::Tick(float& fTimeDelta, CFloatRect& floatrectFather)
+	void CGuiSlider::Tick(float& fTimeDelta, V::CFloatRect& floatrectFather)
 	{
 		if (IsFirstTick()) {
 			m_bIsUpdating = false; // Don't trigger HasUpdated() on the first tick

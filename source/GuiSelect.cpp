@@ -1,6 +1,6 @@
 #include "GuiSelect.h"
 
-namespace Vektoria
+namespace VektoriaGui
 {
 	CGuiSelect::~CGuiSelect()
 	{
@@ -11,57 +11,57 @@ namespace Vektoria
 		m_vOptions.clear();
 	}
 
-	void CGuiSelect::Init(CDeviceCursor* deviceCursor, CWritingFont* font)
+	void CGuiSelect::Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font)
 	{
 		this->Init(deviceCursor, font, 4, m_zfrBase);
 	}
 
-	void CGuiSelect::Init(CDeviceCursor* deviceCursor, CWritingFont* font, int optionsVisible)
+	void CGuiSelect::Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, int optionsVisible)
 	{
 		this->Init(deviceCursor, font, optionsVisible, m_zfrBase);
 	}
 
-	void CGuiSelect::Init(CDeviceCursor* deviceCursor, CWritingFont* font, int optionsVisible, CFloatRect& floatRect)
+	void CGuiSelect::Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, int optionsVisible, V::CFloatRect& floatRect)
 	{
 		CGuiElement::Init(deviceCursor, font, floatRect);
 		m_acName = "CGuiSelect";
 
 		// Styling base overlay
-		m_zmBase.MakeTextureSprite("gui\\resources\\GuiElement_Background.jpg");
+		m_zmBase.MakeTextureSprite(&(vektoria_gui_path + "\\resources\\GuiElement_Background.jpg")[0]);
 		
 		// Styling Interactable
-		m_zoInteractable.SetRect(CFloatRect(0.05f, 0.25f, 0.9f, 0.7f));
+		m_zoInteractable.SetRect(V::CFloatRect(0.05f, 0.25f, 0.9f, 0.7f));
 
 		// Label writing
-		SetLabelRect(CFloatRect(0.05f, 0.1f, 0.9f, 0.1f));
+		SetLabelRect(V::CFloatRect(0.05f, 0.1f, 0.9f, 0.1f));
 
 		// Options
 		m_iOptionsVisible = optionsVisible;
 		if (m_iOptionsVisible <= 0) {
 			m_iOptionsVisible = 4;
 		}
-		m_zfrOptionBase = CFloatRect(0.0f, 0.0f, 0.8f, 1.0f / m_iOptionsVisible);
+		m_zfrOptionBase = V::CFloatRect(0.0f, 0.0f, 0.8f, 1.0f / m_iOptionsVisible);
 
 		// Option active states
-		m_zmOptionActive.MakeTextureSprite("gui\\resources\\GuiSelect_Option_Active.png");
+		m_zmOptionActive.MakeTextureSprite(&(vektoria_gui_path + "\\resources\\GuiSelect_Option_Active.png")[0]);
 		m_zmOptionActive.SetTransparencyOn();
 		m_zmOptionActive.SetTransparency(0.2f);
 		m_proot->AddMaterial(&m_zmOptionActive);
-		m_zmOptionInactive.MakeTextureSprite("gui\\resources\\GuiSelect_Option_Inactive.png");
+		m_zmOptionInactive.MakeTextureSprite(&(vektoria_gui_path + "\\resources\\GuiSelect_Option_Inactive.png")[0]);
 		m_zmOptionInactive.SetTransparencyOn();
 		m_zmOptionInactive.SetTransparency(0.2f);
 		m_proot->AddMaterial(&m_zmOptionInactive);
 
 		// Up/Down Button states
-		m_zmArrowButtonNormal.MakeTextureSprite("gui\\resources\\GuiSelect_UpButton_Normal.png");
+		m_zmArrowButtonNormal.MakeTextureSprite(&(vektoria_gui_path + "\\resources\\GuiSelect_UpButton_Normal.png")[0]);
 		m_zmArrowButtonNormal.SetTransparencyOn();
-		m_zmArrowButtonHover.MakeTextureSprite("gui\\resources\\GuiSelect_UpButton_Hover.png");
+		m_zmArrowButtonHover.MakeTextureSprite(&(vektoria_gui_path + "\\resources\\GuiSelect_UpButton_Hover.png")[0]);
 		m_zmArrowButtonHover.SetTransparencyOn();
-		m_zmArrowButtonClick.MakeTextureSprite("gui\\resources\\GuiSelect_UpButton_Click.png");
+		m_zmArrowButtonClick.MakeTextureSprite(&(vektoria_gui_path + "\\resources\\GuiSelect_UpButton_Click.png")[0]);
 		m_zmArrowButtonClick.SetTransparencyOn();
 
 		// Up Button
-		m_zgbUpButton.Init(m_pdc, m_pwfFont, CFloatRect(0.85f, 0.0f, 0.15f, 0.5f));
+		m_zgbUpButton.Init(m_pdc, m_pwfFont, V::CFloatRect(0.85f, 0.0f, 0.15f, 0.5f));
 		m_zgbUpButton.SetMaterialNormal(m_zmArrowButtonNormal);
 		m_zgbUpButton.SetMaterialHover(m_zmArrowButtonHover);
 		m_zgbUpButton.SetMaterialClick(m_zmArrowButtonClick);
@@ -69,7 +69,7 @@ namespace Vektoria
 		m_zoInteractable.AddOverlay(&m_zgbUpButton);
 
 		// Down Button
-		m_zgbDownButton.Init(m_pdc, m_pwfFont, CFloatRect(0.85f, 0.5f, 0.15f, 0.5f));
+		m_zgbDownButton.Init(m_pdc, m_pwfFont, V::CFloatRect(0.85f, 0.5f, 0.15f, 0.5f));
 		m_zgbDownButton.SetMaterialNormal(m_zmArrowButtonNormal);
 		m_zgbDownButton.SetMaterialHover(m_zmArrowButtonHover);
 		m_zgbDownButton.SetMaterialClick(m_zmArrowButtonClick);
@@ -92,7 +92,7 @@ namespace Vektoria
 		m_vOptions.back()->SetLabel(name);
 		m_vOptions.back()->SetInnerOn();
 		m_vOptions.back()->SetMaterial(&m_zmOptionInactive);
-		m_vOptions.back()->SetLabelRect(CFloatRect(0.05f, 0.25f, 0.9f, 0.5f));
+		m_vOptions.back()->SetLabelRect(V::CFloatRect(0.05f, 0.25f, 0.9f, 0.5f));
 		m_zoInteractable.AddOverlay(m_vOptions.back());
 
 		if (!IsFirstTick()) {
@@ -196,7 +196,7 @@ namespace Vektoria
 		}
 	}
 
-	void CGuiSelect::Tick(float& fTimeDelta, CFloatRect& floatrectFather)
+	void CGuiSelect::Tick(float& fTimeDelta, V::CFloatRect& floatrectFather)
 	{
 		if (IsFirstTick()) {
 			SetLayerGui();

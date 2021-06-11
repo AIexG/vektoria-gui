@@ -15,7 +15,7 @@
 
 #define GUI_SELECT_POSITION_NONE	-1
 
-namespace Vektoria
+namespace VektoriaGui
 {
 	class CGuiSelect : public CGuiElement
 	{
@@ -26,20 +26,20 @@ namespace Vektoria
 		///<summary>Initialisation method for a basic gui element.</summary>
 		///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
 		///<param name="font">Font to be used for labels and values</param>
-		void Init(CDeviceCursor * deviceCursor, CWritingFont * font);
+		void Init(V::CDeviceCursor * deviceCursor, V::CWritingFont * font);
 
 		///<summary>Initialisation method for a basic gui element.</summary>
 		///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
 		///<param name="font">Font to be used for labels and values</param>
 		///<param name="optionsVisible">Amount of visible options in the list.</param>
-		void Init(CDeviceCursor * deviceCursor, CWritingFont * font, int optionsVisible);
+		void Init(V::CDeviceCursor * deviceCursor, V::CWritingFont * font, int optionsVisible);
 
 		///<summary>Initialisation method for a basic gui element.</summary>
 		///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
 		///<param name="font">Font to be used for labels and values</param>
 		///<param name="optionsVisible">Amount of visible options in the list.</param>
 		///<param name="floatRect">Size and position for the GuiElement</param>
-		void Init(CDeviceCursor * deviceCursor, CWritingFont * font, int optionsVisible, CFloatRect & floatRect);
+		void Init(V::CDeviceCursor * deviceCursor, V::CWritingFont * font, int optionsVisible, V::CFloatRect & floatRect);
 
 		///<summary>Add a new option to the select field, returns false if key already exists.</summary>
 		///<param name="name">Display name and key of the option.</param>
@@ -75,14 +75,14 @@ namespace Vektoria
 		int m_iOptionsVisible;
 		int m_iOptionsScrollable;
 
-		CMaterial m_zmOptionActive;
-		CMaterial m_zmOptionInactive;
+		V::CMaterial m_zmOptionActive;
+		V::CMaterial m_zmOptionInactive;
 		std::vector<CGuiElement*> m_vOptions;
-		CFloatRect m_zfrOptionBase;
+		V::CFloatRect m_zfrOptionBase;
 
-		CMaterial m_zmArrowButtonNormal;
-		CMaterial m_zmArrowButtonHover;
-		CMaterial m_zmArrowButtonClick;
+		V::CMaterial m_zmArrowButtonNormal;
+		V::CMaterial m_zmArrowButtonHover;
+		V::CMaterial m_zmArrowButtonClick;
 		CGuiButton m_zgbUpButton;
 		CGuiButton m_zgbDownButton;
 
@@ -91,8 +91,7 @@ namespace Vektoria
 
 		///<summary>Method to be called every tick in the application.</summary>
 		///<param name="fTimeDelta">Time since last tick</param>
-		//void Tick(float& fTimeDelta);
-		void Tick(float& fTimeDelta, CFloatRect& floatrectFather) override;
+		virtual void Tick(float& fTimeDelta, V::CFloatRect& floatrectFather);
 	};
 }
 

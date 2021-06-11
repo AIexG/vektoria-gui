@@ -11,7 +11,7 @@
 // Copyright  : GNU GPL
 //--------------------------------------------------------------------------------------------
 
-namespace Vektoria
+namespace VektoriaGui
 {
 	class CGuiImageColorPicker : public CGuiElement
 	{
@@ -22,39 +22,39 @@ namespace Vektoria
 		///<summary>Initialisation method for a slider element.</summary>
 		///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
 		///<param name="font">Font to be used for labels and values</param>
-		void Init(CDeviceCursor* deviceCursor, CWritingFont* font);
+		void Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font);
 
 		///<summary>Initialisation method for a slider element.</summary>
 		///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
 		///<param name="font">Font to be used for labels and values</param>
 		///<param name="image">Image to pick a color from</param>
-		void Init(CDeviceCursor* deviceCursor, CWritingFont* font, CImage& image);
+		void Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, V::CImage& image);
 
 		///<summary>Initialisation method for a slider element.</summary>
 		///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
 		///<param name="font">Font to be used for labels and values</param>
 		///<param name="path">Image path to pick a color from</param>
-		void Init(CDeviceCursor* deviceCursor, CWritingFont* font, char* path);
+		void Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, char* path);
 
 		///<summary>Initialisation method for a slider element.</summary>
 		///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
 		///<param name="font">Font to be used for labels and values</param>
 		///<param name="floatRect">Size and position for the GuiElement</param>
-		void Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect);
+		void Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, V::CFloatRect& floatRect);
 
 		///<summary>Initialisation method for a slider element.</summary>
 		///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
 		///<param name="font">Font to be used for labels and values</param>
 		///<param name="floatRect">Size and position for the GuiElement</param>
 		///<param name="image">Image to pick a color from</param>
-		void Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect, CImage& image);
+		void Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, V::CFloatRect& floatRect, V::CImage& image);
 
 		///<summary>Initialisation method for a slider element.</summary>
 		///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
 		///<param name="font">Font to be used for labels and values</param>
 		///<param name="floatRect">Size and position for the GuiElement</param>
 		///<param name="path">Image path to pick a color from</param>
-		void Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect, char* path);
+		void Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, V::CFloatRect& floatRect, char* path);
 
 		///<summary>Set a new image for the picker by path.</summary>
 		///<param name="path">Path to the image.</param>
@@ -62,10 +62,10 @@ namespace Vektoria
 
 		///<summary>Set a new image for the picker.</summary>
 		///<param name="image">Image to be set.</param>
-		void SetImage(CImage& image);
+		void SetImage(V::CImage& image);
 
 		///<summary>Returns last picked color.</summary>
-		CColor GetColor();
+		V::CColor GetColor();
 
 		///<summary>Returns true if the color value has updated in the last tick.</summary>
 		bool HasUpdated();
@@ -80,15 +80,15 @@ namespace Vektoria
 	protected:
 		bool m_bHasUpdated = false;
 
-		CColor m_zcColor;
-		CImage m_ziImage;
-		CTexture m_ztImage;
+		V::CColor m_zcColor;
+		V::CImage m_ziImage;
+		V::CTexture m_ztImage;
 
-		CTexture m_ztPreview;
-		CImage m_ziPreview;
-		CMaterial m_zmPreview;
-		CFloatRect m_frPreview;
-		CColor m_zcPreview;
+		V::CTexture m_ztPreview;
+		V::CImage m_ziPreview;
+		V::CMaterial m_zmPreview;
+		V::CFloatRect m_frPreview;
+		V::CColor m_zcPreview;
 		COverlay m_zoPreview;
 
 		// Interactable absolute position and inverse size
@@ -101,12 +101,11 @@ namespace Vektoria
 		///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
 		///<param name="font">Font to be used for labels and values</param>
 		///<param name="floatRect">Size and position for the GuiElement</param>
-		void Initialisation(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect);
+		void Initialisation(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, V::CFloatRect& floatRect);
 
 		///<summary>Method to be called every tick in the application.</summary>
 		///<param name="fTimeDelta">Time since last tick</param>
-		//void Tick(float& fTimeDelta) override;
-		void Tick(float& fTimeDelta, CFloatRect& floatrectFather) override;
+		virtual void Tick(float& fTimeDelta, V::CFloatRect& floatrectFather);
 	};
 }
 

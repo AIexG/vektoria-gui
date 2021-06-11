@@ -1,36 +1,36 @@
 #include "GuiImageColorPicker.h"
 
-namespace Vektoria
+namespace VektoriaGui
 {
-	void CGuiImageColorPicker::Init(CDeviceCursor* deviceCursor, CWritingFont* font)
+	void CGuiImageColorPicker::Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font)
 	{
 		this->Init(deviceCursor, font, m_zfrBase);
 	}
 
-	void CGuiImageColorPicker::Init(CDeviceCursor* deviceCursor, CWritingFont* font, CImage& image)
+	void CGuiImageColorPicker::Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, V::CImage& image)
 	{
 		this->Init(deviceCursor, font, m_zfrBase, image);
 	}
 
-	void CGuiImageColorPicker::Init(CDeviceCursor* deviceCursor, CWritingFont* font, char* path)
+	void CGuiImageColorPicker::Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, char* path)
 	{
-		this->Init(deviceCursor, font, m_zfrBase, "gui\\resources\\GuiImageColorPicker_Full.jpg");
+		this->Init(deviceCursor, font, m_zfrBase, &(vektoria_gui_path + "\\resources\\GuiImageColorPicker_Full.jpg")[0]);
 	}
 
-	void CGuiImageColorPicker::Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect)
+	void CGuiImageColorPicker::Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, V::CFloatRect& floatRect)
 	{
-		CImage image;
-		image.Init("gui\\resources\\GuiImageColorPicker_Full.jpg");
+		V::CImage image;
+		image.Init(&(vektoria_gui_path + "\\resources\\GuiImageColorPicker_Full.jpg")[0]);
 		this->Init(deviceCursor, font, floatRect, image);
 	}
 
-	void CGuiImageColorPicker::Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect, CImage& image)
+	void CGuiImageColorPicker::Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, V::CFloatRect& floatRect, V::CImage& image)
 	{
 		Initialisation(deviceCursor, font, floatRect);
 		SetImage(image);
 	}
 
-	void CGuiImageColorPicker::Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect, char* path)
+	void CGuiImageColorPicker::Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, V::CFloatRect& floatRect, char* path)
 	{
 		Initialisation(deviceCursor, font, floatRect);
 		SetImage(path);
@@ -42,7 +42,7 @@ namespace Vektoria
 		SetImage(m_ziImage);
 	}
 
-	void CGuiImageColorPicker::SetImage(CImage& image)
+	void CGuiImageColorPicker::SetImage(V::CImage& image)
 	{
 		m_ziImage.Copy(image);
 		m_ztImage.Fini();
@@ -50,7 +50,7 @@ namespace Vektoria
 		m_zmInteractable.SetTextureSprite(&m_ztImage);
 	}
 
-	CColor CGuiImageColorPicker::GetColor()
+	V::CColor CGuiImageColorPicker::GetColor()
 	{
 		return m_zcColor;
 	}
@@ -71,7 +71,7 @@ namespace Vektoria
 		CGuiElement::ReSize();
 
 		// Get absolute position
-		CFloatRect frAbsolute = GetRectAbsolute(&m_zoInteractable);
+		V::CFloatRect frAbsolute = fetchRectAbsolutePosition(&m_zoInteractable);
 		m_fPosAbsX = frAbsolute.GetXPos();
 		m_fPosAbsY = frAbsolute.GetYPos();
 		m_fInverseSizeAbsX = 1.0f / frAbsolute.GetXSize();
@@ -81,7 +81,7 @@ namespace Vektoria
 		if (m_pviewport != nullptr) {
 			m_fPreviewPosX = (12.0f / (float)m_pviewport->m_iWidth) - m_fPosAbsX; // Windows 10 cursor width + padding in px
 			m_fPreviewPosY = (21.0f / (float)m_pviewport->m_iHeight) - m_fPosAbsY; // Windows 10 cursor height + padding in px
-			m_frPreview = CFloatRect(
+			m_frPreview = V::CFloatRect(
 				m_fPreviewPosX, m_fPreviewPosY,
 				20.0f / (float)m_pviewport->m_iWidth, // Preview circle width in px
 				20.0f / (float)m_pviewport->m_iHeight // Preview circle height in px
@@ -90,32 +90,32 @@ namespace Vektoria
 		}
 	}
 	
-	void CGuiImageColorPicker::Initialisation(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect)
+	void CGuiImageColorPicker::Initialisation(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, V::CFloatRect& floatRect)
 	{
 		CGuiElement::Init(deviceCursor, font, floatRect);
 
 		m_acName = "CGuiImageColorPicker";
 
 		// Styling base overlay
-		m_zmBase.MakeTextureSprite("gui\\resources\\GuiElement_Background.jpg");
+		m_zmBase.MakeTextureSprite(&(vektoria_gui_path + "\\resources\\GuiElement_Background.jpg")[0]);
 
 		// Styling Interactable
-		m_zoInteractable.SetRect(CFloatRect(0.05f, 0.25f, 0.9f, 0.7f));
+		m_zoInteractable.SetRect(V::CFloatRect(0.05f, 0.25f, 0.9f, 0.7f));
 		m_zoInteractable.SetTransparency(0.0f);
 
 		// Label
-		m_zwLabel.SetRect(CFloatRect(0.05f, 0.1f, 0.9f, 0.1f));
+		m_zwLabel.SetRect(V::CFloatRect(0.05f, 0.1f, 0.9f, 0.1f));
 
 		// Preview Overlay
-		m_zmPreview.MakeTextureSprite("gui\\resources\\GuiImageColorPicker_Preview.png");
+		m_zmPreview.MakeTextureSprite(&(vektoria_gui_path + "\\resources\\GuiImageColorPicker_Preview.jpg")[0]);
 		m_zmPreview.SetTransparencyOn();
-		m_frPreview = CFloatRect(0.0f, 0.0f, 0.02f, 0.02f);
+		m_frPreview = V::CFloatRect(0.0f, 0.0f, 0.02f, 0.02f);
 		m_zoPreview.Init(&m_zmPreview, m_frPreview);
 		m_zoInteractable.AddOverlay(&m_zoPreview);
 		m_zoPreview.SwitchOff();
 	}
 
-	void CGuiImageColorPicker::Tick(float& fTimeDelta, CFloatRect& floatrectFather)
+	void CGuiImageColorPicker::Tick(float& fTimeDelta, V::CFloatRect& floatrectFather)
 	{
 		CGuiElement::Tick(fTimeDelta, floatrectFather);
 

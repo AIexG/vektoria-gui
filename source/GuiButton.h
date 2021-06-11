@@ -10,7 +10,7 @@
 // Copyright  : GNU GPL
 //--------------------------------------------------------------------------------------------
 
-namespace Vektoria
+namespace VektoriaGui
 {
 	class CGuiButton : public CGuiElement
 	{
@@ -21,30 +21,29 @@ namespace Vektoria
 		///<summary>Initialisation method for a basic gui element.</summary>
 		///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
 		///<param name="font">Font to be used for labels and values</param>
-		void Init(CDeviceCursor* deviceCursor, CWritingFont* font);
+		void Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font);
 
 		///<summary>Initialisation method for a basic gui element.</summary>
 		///<param name="deviceCursor">Cursor that interacts with the GuiElement</param>
 		///<param name="font">Font to be used for labels and values</param>
 		///<param name="floatRect">Size and position for the GuiElement</param>
-		void Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect);
+		void Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, V::CFloatRect& floatRect);
 
 		///<summary>Sets the text of the gui elements label.</summary>
 		///<param name="text">The text to be set.</param>
 		void SetLabel(std::string text);
 
-		void SetMaterialNormal(CMaterial& material);
-		void SetMaterialHover(CMaterial& material);
-		void SetMaterialClick(CMaterial& material);
+		void SetMaterialNormal(V::CMaterial& material);
+		void SetMaterialHover(V::CMaterial& material);
+		void SetMaterialClick(V::CMaterial& material);
 
 	protected:
-		CMaterial m_zmHover;
-		CMaterial m_zmClick;
+		V::CMaterial m_zmHover;
+		V::CMaterial m_zmClick;
 
 		///<summary>Method to be called every tick in the application.</summary>
 		///<param name="fTimeDelta">Time since last tick</param>
-		//void Tick(float& fTimeDelta);
-		void Tick(float& fTimeDelta, CFloatRect& floatrectFather) override;
+		virtual void Tick(float& fTimeDelta, V::CFloatRect& floatrectFather);
 	};
 }
 
