@@ -45,8 +45,11 @@ namespace VektoriaGui
 		///<param name="font"> Font to be used for labels and values </param>
 		///<param name="floatRect"> Size and position for the GuiElement </param>
 		void Init(V::CDeviceCursor* deviceCursor, V::CWritingFont* font, V::CFloatRect& floatRect);
+
+		///<summary>Simulate a click on the element.</summary>
+		void click();
 		
-		///<summary>Returns true if cursor is above the element.</summary>
+		///<summary>Returns true if cursor is over the element.</summary>
 		bool IsHovered();
 
 		///<summary>Returns true if user grabs the element.</summary>

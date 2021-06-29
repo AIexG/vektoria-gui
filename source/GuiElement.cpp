@@ -34,6 +34,11 @@ namespace VektoriaGui
 		SetLayerGui();
 	}
 
+	void CGuiElement::click()
+	{
+		m_bIsClicked = true;
+	}
+
 	bool CGuiElement::IsHovered()
 	{
 		return m_bIsHovered;
